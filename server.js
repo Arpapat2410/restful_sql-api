@@ -3,6 +3,28 @@ const cors = require("cors");
 const restaurantRouter = require("./routes/restaurant.router")
 const sql = require("./modals/db.js");
 const PORT = 5000;
+const db = require("./modals/index")
+const role = db.role
+//dev mode 
+db.sequelize.sync({force:true}).then(()=>{
+    console.log('Drop and rsync DB');
+    initial();
+})
+
+function initial(){
+    role.create({
+        id : 1 ,
+        name : "user",
+    });
+    role.create({
+        id : 2 ,
+        name : "moderator",
+    });
+    role.create({
+        id : 3 ,
+        name : "admin",
+    });
+}
 
 
 const app = express();
