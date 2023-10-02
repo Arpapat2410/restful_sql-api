@@ -38,6 +38,7 @@ app.get("/", (req,res)=>{
 })
 
 app.use("/", restaurantRouter);
+require("./routes/auth.router")(app);
 
 app.listen(PORT, ()=>{
     console.log("Server is runing  on http://localhost:" + PORT);
