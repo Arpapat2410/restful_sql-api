@@ -30,8 +30,8 @@ router.get("/restaurants", async(req,res)=>{
 //get reataurant by Id
 router.get("/restaurants/:id",[authJwt.verifyToken] ,async(req, res)=>{
     try {
-        const reataurantId = req.params.id;
-        const restaurant = await Restaurant.getById(reataurantId);
+        const restaurantId = req.params.id;
+        const restaurant = await Restaurant.getById(restaurantId);
         res.json(restaurant);
     } catch (error) {
         res.status(500).json({error: "Failed to get reataurants by id"});
@@ -40,7 +40,7 @@ router.get("/restaurants/:id",[authJwt.verifyToken] ,async(req, res)=>{
 })
 
 //update a reataurant data
-router.put("/restaurants/:id", async (req,res) =>{
+router.put("/restaurants/:id", [authJwt.verifyToken, authJwt.isAdmin] ,async (req,res) =>{
     try {
         const restaurantId = req.params.id;
         const restaurantData = req.body;
