@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const dbConfig = require('../config/db.config')
 
+//สร้าง connection database ดึงจาก dbconfig
 const connection = mysql.createConnection({
     host : dbConfig.HOST,
     user : dbConfig.USER,

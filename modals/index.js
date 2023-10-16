@@ -19,7 +19,7 @@ const sequelize = new Sequelize(config.DB,config.USER,config.PASSWORD,{
 })
 
 const db = {} ;
-db.Sequelize = sequelize;
+db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //การ require พร้อมส่ง พารามิเตอร์

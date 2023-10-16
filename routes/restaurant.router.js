@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Restaurant = require("../controllers/restaurant.controller");
+const {authJwt } = require ("../middleware/index")
 
 //Create a new Restaurant 
 //http:/locolhost:500/restaurants
@@ -27,7 +28,7 @@ router.get("/restaurants", async(req,res)=>{
 }) 
 
 //get reataurant by Id
-router.get("/restaurants/:id", async(req, res)=>{
+router.get("/restaurants/:id",[authJwt.verifyToken] ,async(req, res)=>{
     try {
         const reataurantId = req.params.id;
         const restaurant = await Restaurant.getById(reataurantId);
@@ -43,7 +44,7 @@ router.put("/restaurants/:id", async (req,res) =>{
     try {
         const restaurantId = req.params.id;
         const restaurantData = req.body;
-        const updateRetaurant = await Restaurant.updateById(restaurantId, restaurantData)
+        const updateRestaurant = await Restaurant.updateById(restaurantId, restaurantData)
         res.status(200).json(updateRestaurant);
     } catch (error) {
         if (error.kind === "not_found") {

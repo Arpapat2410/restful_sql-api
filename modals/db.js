@@ -11,7 +11,6 @@ const sequelize = new Sequelize(dbConfig.DB , dbConfig.USER , dbConfig.PASSWORD,
         rejectUnauthorized : false,
       },
     },
-  
 });
 
 //Test teh database connection 

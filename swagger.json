@@ -1,0 +1,362 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Grab Restaurant API",
+        "description": "All ReSTful API Endpoint for Grab Restaurant",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/api/auth/signin": {
+            "post": {
+                "tags": ["Authentication"],
+                "description": "Sign in to Grab Restaurant",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "required": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successfully Sign in ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "roles": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "accessToken": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "id": 1,
+                                        "username": "username",
+                                        "email": "email",
+                                        "roles": [
+                                            "ROLES_USER"
+                                        ],
+                                        "accessToken": "eyJhbGci...lJmKyeECo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/signup": {
+            "post": {
+                "tags": ["Authentication"],
+                "description": "Sign up to Grab Restaurant",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "required": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            },
+                            "roles": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successfully Sign up ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "password": {
+                                            "type": "string"
+                                        },
+                                        "roles": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/restaurants": {
+            "get": {
+                "tags": ["Restaurants"],
+                "description": "GetAll Grab Restaurant",
+                "responses": {
+                    "200": {
+                        "description": "Successfully Get Grab Restaurant ById ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "img": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+
+                }
+            },
+            "post": {
+                "description": "Create Grab Restaurant",
+                "tags": ["Restaurants"],
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "required": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "img": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successfully Create Grab Restaurant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "img": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/restaurants/{id}": {
+            "get": {
+                "tags": ["Restaurants"],
+                "description": "Get Grab Restaurant ById",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "schema": {
+                        "type": "integer"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successfully Get Grab Restaurant ById ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "img": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put":{
+                "tags": ["Restaurants"],
+                "description": "Update Restaurant ById",
+                "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "ID of the restaurant to update",
+                "required": true,
+                "type": "number"
+              },
+              {
+                "name": "body",
+                "in": "body",
+                "description": "Restaurant object to update",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "imageURL": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }],
+                "responses": {
+              "200": {
+                "description": "Successfully Update Grab Restaurant ById ",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "imageURL": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Restaurant not found"
+              },
+              "500": {
+                "description": "failed to Update Restaurant data"
+              }
+            }
+            },
+            "delete": {
+                "tags": ["Restaurants"],
+                "description": "Delete a user from Grab Restaurant",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": "true",
+                    "schema": {
+                        "type": "integer"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully ",
+                        "400": {
+                            "description": "User deleted successfully "
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

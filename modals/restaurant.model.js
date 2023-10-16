@@ -32,13 +32,13 @@ const Restaurant = sequelize.define("restaurant",{
     }
 })
 
-Restaurant.sync({ force : false })
-    .then(()=>{
-        console.log("table create or already exists");
-    })
-    .catch((error) => {
-        console.error("error creating table :" , error);
-    })
+// Restaurant.sync({ force : false })
+//     .then(()=>{
+//         console.log("table create or already exists");
+//     })
+//     .catch((error) => {
+//         console.error("error creating table :" , error);
+//     })
 
 module.exports = Restaurant;
 
