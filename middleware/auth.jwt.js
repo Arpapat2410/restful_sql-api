@@ -2,6 +2,15 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 const db = require("../modals")
 const User = db.user;
+const {TokenExpiredError} = jwt;
+
+//ดัก token หมดอายุ
+const catchError = (err,res) => {
+    if (err instanceof TokenExpiredError){
+        return res.status(401).send({message : "Unauthorized! Access Token was expiration"})
+    }
+    return res.status(401).send({message : "Unauthorized! "})
+}
 
 verifyToken = (req,res,next) => {
     let token = req.headers['x-access-token'];
@@ -10,7 +19,7 @@ verifyToken = (req,res,next) => {
     }
     jwt.verify(token, config.secret, (err,decode)=>{
         if (err) {
-            return res.status(401).send({message:"Unauthorized!"});
+            return catchError(err,res)
         }
         req.userId = decode.id;
         next();
